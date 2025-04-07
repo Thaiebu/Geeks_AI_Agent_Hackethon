@@ -2,6 +2,7 @@ pandas
 numpy
 joblib
 scikit-learn
+google-generativeai
 sentence-transformers
 pydantic
 streamlit
