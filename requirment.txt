@@ -5,8 +5,8 @@ scikit-learn
 sentence-transformers
 pydantic
 streamlit
-langgraph==0.3.21
-langchain-google-genai==0.1.2
-langgraph-prebuilt==0.1.7
-google-generativeai==0.9.0
-google-ai-generativelanguage==0.6.20
+langgraph
+langchain-google-genai
+langgraph-prebuilt
+google-generativeai
+google-ai-generativelanguage
