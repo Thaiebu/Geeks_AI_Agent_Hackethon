@@ -1,0 +1,13 @@
+pandas
+numpy
+joblib
+scikit-learn
+python-dotenv
+sentence-transformers
+pydantic
+streamlit
+langgraph
+langchain-google-genai
+langgraph-prebuilt
+google-generativeai
+google-ai-generativelanguage
