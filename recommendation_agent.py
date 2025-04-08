@@ -162,7 +162,7 @@ class AgentState(BaseModel):
 # Initialize your existing tools
 segmenter = CustomerSegmenter('segmenter_model.joblib')
 # Assuming products_df is available or loaded elsewhere
-products_df = pd.read_csv('Dataset/product_recommendation_data.csv')
+products_df = pd.read_csv('product_recommendation_data.csv')
 engine = RecommendationEngine(products_df)
 
 # Define tool functions that use your existing code
