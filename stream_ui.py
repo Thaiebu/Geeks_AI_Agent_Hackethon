@@ -20,7 +20,7 @@ st.set_page_config(
 def load_models_and_data():
     """Load models and data that should be cached between sessions"""
     # Load product data - in production this might come from a database
-    products_df = pd.read_csv("Dataset\product_recommendation_data.csv")  # Replace with your actual data source
+    products_df = pd.read_csv("product_recommendation_data.csv")  # Replace with your actual data source
     
     # Initialize segmenter and recommendation engine
     segmenter = CustomerSegmenter('segmenter_model.joblib')
@@ -100,7 +100,7 @@ def create_mock_products():
     return df
 
 # Create mock data file if needed - remove in production
-if not os.path.exists("Dataset\product_recommendation_data.csv"):
+if not os.path.exists("product_recommendation_data.csv"):
     mock_df = create_mock_products()
     mock_df.to_csv("products.csv", index=False)
 
