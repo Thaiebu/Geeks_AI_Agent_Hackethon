@@ -206,17 +206,38 @@ def customer_input_page():
                         st.write(f"**Segment**: {parsed.get('segment', 'Unknown')}")
                         
                         st.markdown("### 🛍️ Top Recommendations")
-                        for item in parsed.get("recommendations", []):
-                            st.markdown(f"""
-                            <div style="background-color:#f9f9f9;padding:10px;border-radius:10px;margin-bottom:10px">
-                            <b>{item['Category']} > {item['Subcategory']}</b>  
-                            - **Product ID**: {item['Product_ID']}  
-                            - **Price**: ₹{item['Price']}  
-                            - **Rating**: {item['Product_Rating']}  
-                            - **Sentiment Score**: {item['Customer_Review_Sentiment_Score']}  
-                            - **Recommendation Probability**: {item['Probability_of_Recommendation']}
-                            </div>
-                            """, unsafe_allow_html=True)
+                        # for item in parsed.get("recommendations", []):
+                        #     st.markdown(f"""
+                        #     <div style="background-color:#f9f9f9;padding:10px;border-radius:10px;margin-bottom:10px">
+                        #     <b>{item['Category']} > {item['Subcategory']}</b>  
+                        #     - **Product ID**: {item['Product_ID']}  
+                        #     - **Price**: ₹{item['Price']}  
+                        #     - **Rating**: {item['Product_Rating']}  
+                        #     - **Sentiment Score**: {item['Customer_Review_Sentiment_Score']}  
+                        #     - **Recommendation Probability**: {item['Probability_of_Recommendation']}
+                        #     </div>
+                        #     """, unsafe_allow_html=True)
+                        recommendations = parsed.get("recommendations", [])
+
+                        if recommendations:
+                            # Convert the list of recommendation dicts into a DataFrame
+                            df = pd.DataFrame(recommendations)
+
+                            # Optional: Reorder or rename columns for better display
+                            df = df[[
+                                "Category", "Subcategory", "Product_ID", "Price",
+                                "Product_Rating", "Customer_Review_Sentiment_Score",
+                                "Probability_of_Recommendation"
+                            ]]
+
+                            df.columns = [
+                                "Category", "Subcategory", "Product ID", "Price (₹)",
+                                "Rating", "Sentiment Score", "Recommendation Probability"
+                            ]
+
+                            st.dataframe(df, use_container_width=True)
+                        else:
+                            st.info("No recommendations found.")
 
                         st.markdown("### 📨 Final Email Response")
                         st.text_area("Email Template", value=parsed.get("final_response", ""), height=300)
